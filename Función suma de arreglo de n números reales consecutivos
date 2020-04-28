@@ -1,0 +1,98 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "pila.h"
+
+void llenar_arreglo(int arr[], int size);
+int suma(int arr[], int size);
+void carga_pila(int arr[], int size, Pila *pila);
+void carga_100_numeros_reales(int arr[], int size, int inicio);
+int suma_reales(int arr[], int size);
+
+int main()
+{
+    Pila pila;
+    inicpila(&pila);
+    int A[5] = {1,2,3,4,5};
+    int size = 0;
+    int inicio = 0;
+    printf("Ingrese el tamaño del arreglo: ");
+    scanf("\n%i", &size);
+
+    printf("\ningrese el numero inicial del arreglo: ");
+    scanf("%d", &inicio);
+
+    int B[size];
+
+    //llenar_arreglo(B, size);
+
+
+
+    //int result = suma(B, size);
+
+
+    //carga_pila(B, size, &pila);
+
+
+
+    carga_100_numeros(B, size, inicio);
+
+    int result = suma_reales(B, size);
+
+    for (int i = 0 ; i < size; i++){
+        printf("\n   %d", B[i]);
+    }
+
+
+    printf("\n La sumatoria es: %i", result);
+
+    //mostrar(&pila);
+
+    return 0;
+}
+
+
+void llenar_arreglo(int arr[], int size){
+    int valor;
+    for(int j = 0; j < size; j++ ){
+        printf("\ningrese un valor:");
+        scanf("%i", &valor);
+        arr[j] = valor;
+    }
+
+}
+
+int suma(int arr[], int size){
+    int suma = 0;
+    for (int i = 0 ; i < size; i++) {
+        suma += arr[i];
+    }
+    return suma;
+}
+
+void carga_pila(int arr[], int size, Pila *pila){
+
+    for(int i = 0; i< size; i++){
+        apilar(pila, arr[i]);
+    }
+
+
+}
+
+void carga_100_numeros(int arr[], int size, int inicio){
+    for (int i = 0 ; i < size; i++){
+        arr[i] = inicio + i;
+    }
+}
+
+int suma_reales(int arr[], int size){
+    int temp = 0;
+    for (int i = 0; i < size; i++){
+        temp = temp + arr[i];
+    }
+    return temp;
+}
+
+
+
+
+
