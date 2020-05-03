@@ -35,10 +35,13 @@ int main()
     char mayor = '*';
     int size1 = 0;
     int size2 = 0;
-    char arr1[size1];
-    char arr2[size2];
+    //char arr1[size1];
+    //char arr2[size2];
     int ejercicio = 0;
     char control;
+
+    char arr1[6] = "acgulx";
+    char arr2[4] = "pnzb";
 
 
     do
@@ -282,14 +285,15 @@ int main()
 
         case 12:
 
-            char arrA[6] = {"acgulx"};
-            char arrB[3] = {"pnz"};
+            printf("primer arreglo:\n");
+            mostrar_arreglo_letras(arr1, 6);
+            printf("\n");
+            printf("segundo arreglo:\n");
+            mostrar_arreglo_letras(arr2, 4);
+            printf("\n");
 
 
-
-
-
-            intercalar_dos_arreglos(arrA, arrB, 6, 3);
+            intercalar_dos_arreglos(arr1, arr2, 6, 4);
 
 
 
@@ -368,7 +372,7 @@ void carga_caracteres(char c[], int size){
 
 void mostrar_arreglo_letras(char arr[], int size){
     for (int i = 0; i < size; i++){
-        printf("\n %c", arr[i]);
+        printf("%c", arr[i]);
     }
 
 
@@ -513,12 +517,12 @@ void ordenamiento_por_insercion(int arr[], int size){
 
 void intercalar_dos_arreglos(char arr1[], char arr2[], int size1, int size2){
     int length = size1+size2;
-    char con[length];
-    //copiar y concatenar reservando memoria con malloc.
+    char *con = malloc(size1+size2);
+    // copiar y concatenar reservando memoria con malloc.
     memcpy(con, arr1, size1);
     memcpy(con+size1, arr2, size2);
 
-    printf("%s", con);
+    //printf("%s", con);
 
     char temp = 0;
     char temp2 = 0;
