@@ -287,6 +287,9 @@ void ordenamiento_por_insercion(int arr[], int size){
 }
 
 void intercalar_dos_arreglos(char arr1[], char arr2[], size_t size1, size_t size2){
+    
+    /*
+    
     int length = size1+size2;
     char *con = malloc(size1+size2);
     // copiar y concatenar reservando memoria con malloc.
@@ -310,6 +313,46 @@ void intercalar_dos_arreglos(char arr1[], char arr2[], size_t size1, size_t size
     for (int k = 0; k < length; k++){
         printf("%c", con[k]);
     }
+    */
+    
+    
+    /*
+    Hago una correccion del ejercicio 12 porque mi primera resolucion no cumplia las condiciones originales del enunciado.
+    */
+
+    int length = size1+size2;
+    char *con = malloc(size1+size2);
+    int contador = 0;
+    int i = 0;
+    int j = 0;
+    while (contador < length) {
+        if (size1 < size2){
+            if(arr1[i] <= arr2[j] && i < size1){
+                con[contador] = arr1[i];
+                i++;
+            } else {
+                con[contador] = arr2[j];
+                j++;
+            }
+        } else {
+            if(arr1[i] >= arr2[j] && j < size2){
+                con[contador] = arr2[j];
+                j++;
+            } else {
+                con[contador] = arr1[i];
+                i++;
+            }
+        }
+    contador++;
+    }
+
+
+
+    for (int k = 0; k < length; k++){
+        res[k] = con[k];
+    }
+
+
 
 
 
