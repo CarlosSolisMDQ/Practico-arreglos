@@ -19,7 +19,7 @@ void verificar_si_es_capicua(int arr[], int size);
 void invertir_arreglo(int arr[],int size);
 void ordenamiento_por_seleccion(int arr[], int size);
 void ordenamiento_por_insercion(int arr[], int size);
-void intercalar_dos_arreglos(char arr1[], char arr2[], int size1, int size2);
+void intercalar_dos_arreglos(char resolucion[], char arr1[], char arr2[], int size1, int size2);
 
 int main()
 {
@@ -40,8 +40,9 @@ int main()
     int ejercicio = 0;
     char control;
 
-    char arr1[6] = "acgulx";
-    char arr2[4] = "pnzb";
+    char arr1[4] = "adgh";
+    char arr2[6] = "bcefjk";
+    char resolucion[10];
 
 
     do
@@ -52,10 +53,10 @@ int main()
         printf("||        y mostrar arreglo por pantalla                          \t||\n");
         printf("||                                                                \t||\n");
         printf("||   2)   suma de elementos de un arreglo                         \t||\n");
-        printf("||        suma de sus elementos.                                  \t||\n");
+        printf("||                                                                \t||\n");
         printf("||   3)   copiar los datos de un arreglo en una pila              \t||\n");
         printf("||                                                                \t||\n");
-        printf("||   4)   Funcion que sume elementos reales de un arreglo         \t||\n");
+        printf("||   4)   Funcion que sume numeros reales de un arreglo           \t||\n");
         printf("||        de dimension variable                                   \t||\n");
         printf("||   5)   Encontrar un elemento en un arreglo de caracteres       \t||\n");
         printf("||   6)   Insertar un caracter en un arreglo ordenado             \t||\n");
@@ -64,8 +65,8 @@ int main()
         printf("||   8)   Determinar si un arreglo es palindromo                  \t||\n");
         printf("||   9)   Invierte los elementos de un arreglo                    \t||\n");
         printf("||   10)  Ordena un arreglo por seleccion                         \t||\n");
-        printf("||   11)  Ordena un arreglo por inserciocn                        \t||\n");
-        printf("||   12)  Ordena dos arreglos de caracteres concatenados          \t||\n");
+        printf("||   11)  Ordena un arreglo por insercion                         \t||\n");
+        printf("||   12)  Ordena dos arreglos concatenados de caracteres           \t||\n");
 
 
 
@@ -285,16 +286,19 @@ int main()
 
         case 12:
 
+
+
             printf("primer arreglo:\n");
-            mostrar_arreglo_letras(arr1, 6);
+            mostrar_arreglo_letras(arr1, 4);
             printf("\n");
             printf("segundo arreglo:\n");
-            mostrar_arreglo_letras(arr2, 4);
+            mostrar_arreglo_letras(arr2, 6);
             printf("\n");
 
 
-            intercalar_dos_arreglos(arr1, arr2, 6, 4);
+            intercalar_dos_arreglos(resolucion, arr1, arr2, 4, 6);
 
+            mostrar_arreglo_letras(resolucion, 10);
 
 
             break;
@@ -393,22 +397,17 @@ void buscar_caracter(char arr[], int size, char item){
 }
 
 void insertar_caracter(char arr[], int size, char item){
-    //esto fue un quilombo.
-
     int a, b;
     a = 0;
     b = 0;
     int size2 = size + 1;
     char aux[size2];
-    //con el while busco el hueco como con pilas.
 
     while (arr[a] < item) {
         aux[a] = arr[a];
         a++;
         b++;
     }
-
-    //con los for paso los items que quedan saltando 1 elemento y los retorno al array original.
 
     aux[a] = item;
     for (int i = a; i< size; i++){
@@ -515,14 +514,14 @@ void ordenamiento_por_insercion(int arr[], int size){
 
 }
 
-void intercalar_dos_arreglos(char arr1[], char arr2[], int size1, int size2){
+void intercalar_dos_arreglos(char res[], char arr1[], char arr2[], int size1, int size2){
+
+/*
     int length = size1+size2;
     char *con = malloc(size1+size2);
-    // copiar y concatenar reservando memoria con malloc.
+
     memcpy(con, arr1, size1);
     memcpy(con+size1, arr2, size2);
-
-    //printf("%s", con);
 
     char temp = 0;
     char temp2 = 0;
@@ -538,6 +537,44 @@ void intercalar_dos_arreglos(char arr1[], char arr2[], int size1, int size2){
     }
     for (int k = 0; k < length; k++){
         printf("%c", con[k]);
+    }
+*/
+
+    /*
+    Hago una correccion del ejercicio 12 porque mi primera resolucion no cumplia las condiciones originales del enunciado.
+
+    */
+
+    int length = size1+size2;
+    char *con = malloc(size1+size2);
+    int contador = 0;
+    int i = 0;
+    int j = 0;
+    while (contador < length) {
+        if (size1 < size2){
+            if(arr1[i] <= arr2[j] && i < size1){
+                con[contador] = arr1[i];
+                i++;
+            } else {
+                con[contador] = arr2[j];
+                j++;
+            }
+        } else {
+            if(arr1[i] >= arr2[j] && j < size2){
+                con[contador] = arr2[j];
+                j++;
+            } else {
+                con[contador] = arr1[i];
+                i++;
+            }
+        }
+    contador++;
+    }
+
+
+
+    for (int k = 0; k < length; k++){
+        res[k] = con[k];
     }
 
 
